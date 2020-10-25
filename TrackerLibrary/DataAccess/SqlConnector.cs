@@ -9,7 +9,7 @@ using TrackerLibrary.Models;
 
 namespace TrackerLibrary.DataAccess {
 
-    public class SqlConnection : IDataConnection {
+    public class SqlConnector : IDataConnection {
 
         /// <summary>
         /// Save a new prize to the database.

@@ -15,11 +15,11 @@ namespace TrackerLibrary {
 
             switch(db) {
                 case DatabaseType.Sql:
-                    SqlConnection sql = new SqlConnection();
+                    SqlConnector sql = new SqlConnector();
                     Connection = sql;
                     break;
                 case DatabaseType.TextFile:
-                    TextConnection text = new TextConnection();
+                    TextConnector text = new TextConnector();
                     Connection = text;
                     break;
                 default:
