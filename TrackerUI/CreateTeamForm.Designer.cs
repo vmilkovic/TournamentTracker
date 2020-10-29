@@ -150,6 +150,7 @@
             this.createMemberButton.TabIndex = 21;
             this.createMemberButton.Text = "Create Member";
             this.createMemberButton.UseVisualStyleBackColor = false;
+            this.createMemberButton.Click += new System.EventHandler(this.createMemberButton_Click);
             // 
             // cellphoneLabel
             // 
@@ -204,7 +205,6 @@
             this.firstNameValue.Name = "firstNameValue";
             this.firstNameValue.Size = new System.Drawing.Size(177, 35);
             this.firstNameValue.TabIndex = 10;
-            this.firstNameValue.TextChanged += new System.EventHandler(this.firstNameValue_TextChanged);
             // 
             // firstNameLabel
             // 
