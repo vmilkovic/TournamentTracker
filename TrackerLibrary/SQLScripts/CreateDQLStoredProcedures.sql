@@ -68,15 +68,25 @@ End
 
 Go
 
+Create Procedure dbo.spTeam_GetAll
+As
+Begin
+	Set NoCount On;
+	Select *
+	From dbo.Teams;
+END
+GO
+
+
 Create Procedure dbo.spTeamMembers_GetByTeam
 	@TeamId int
 As
 Begin
 	Set NoCount On;
 
-	Select tm.*
+	Select p.*
 	From dbo.TeamMembers tm
-	Join dbo.Teams t On t.id = tm.TeamId
+	Inner Join dbo.People p On tm.PersonId = p.id
 	Where tm.TeamId = @TeamId;
 End
 
