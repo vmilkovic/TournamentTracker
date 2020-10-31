@@ -109,7 +109,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers {
             List<string> lines = new List<string>();
 
             foreach(TeamModel t in models) {
-                lines.Add($"{t.Id}, {t.TeamName}, {ConvertPeopleListToString(t.TeamMembers)}");
+                lines.Add($"{t.Id},{t.TeamName},{ConvertPeopleListToString(t.TeamMembers)}");
             }
 
             File.WriteAllLines(fileName.FullFilePath(), lines);
