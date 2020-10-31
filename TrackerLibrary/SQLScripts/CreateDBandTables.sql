@@ -27,7 +27,7 @@ Create table dbo.Prizes (
 Create table dbo.TournamentPrizes (
 	id int Identity(1,1) NOT NULL,
 	TournamentId int,
-	PrizeId int,
+	PrizeId int
 
 	Constraint PK_TournamentPrizes Primary Key Clustered (id asc),
 	Constraint FK_TP_Prizes Foreign Key (PrizeId) References Prizes(id),
@@ -36,15 +36,15 @@ Create table dbo.TournamentPrizes (
 
 Create table dbo.Teams (
 	id int Identity(1,1) NOT NULL,
-	TeamName nvarchar(150) NOT NULL,
+	TeamName nvarchar(150) NOT NULL
 
 	Constraint PK_Teams Primary Key Clustered (id asc)
 );
 
 Create table dbo.TournamentEntries (
 	id int Identity(1,1) NOT NULL,
-	TournamentId int,
-	TeamId int,
+	TournamentId int NOT NULL,
+	TeamId int NOT NULL
 
 	Constraint PK_TournamentEntries Primary Key Clustered (id asc),
 	Constraint FK_TE_Teams Foreign Key (TeamId) References Teams(id),
@@ -57,7 +57,7 @@ Create Table dbo.People (
 	LastName nvarchar(100) NOT NULL,
 	EmailAddress nvarchar(200) NOT NULL,
 	CellphoneNumber varchar(20),
-	CreateDate datetime2(7)
+	CreateDate datetime2(7) NOT NULL
 		Constraint DF_People_CreateDate Default GetDate(),
 
 	Constraint PK_People Primary Key Clustered (id asc)
@@ -65,8 +65,8 @@ Create Table dbo.People (
 
 Create table dbo.TeamMembers (
 	id int Identity(1,1) NOT NULL,
-	TeamId int,
-	PersonId int,
+	TeamId int NOT NULL,
+	PersonId int NOT NULL
 
 	Constraint PK_TeamMembers Primary Key Clustered (id asc),
 	Constraint FK_TeamMembers_People Foreign Key (PersonId) References People(id),
@@ -75,7 +75,7 @@ Create table dbo.TeamMembers (
 
 Create table dbo.Matchups (
 	id int Identity(1,1) NOT NULL,
-	WinnerId int,
+	WinnerId int NOT NULL,
 	MatchupRound int NOT NULL
 
 	Constraint PK_Matchups Primary Key Clustered (id asc),
@@ -84,8 +84,8 @@ Create table dbo.Matchups (
 
 Create table dbo.MatchupEntries (
 	id int Identity(1,1) NOT NULL,
-	MatchupId int,
-	TeamCompetingId int,
+	MatchupId int NOT NULL,
+	TeamCompetingId int NOT NULL,
 	Score int NOT NULL
 		Constraint DF_ME_Score Default (0),
 
