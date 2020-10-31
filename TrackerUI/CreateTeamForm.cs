@@ -12,31 +12,33 @@ using TrackerLibrary.Models;
 
 namespace TrackerUI {
     public partial class CreateTeamForm : Form {
+
+        private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetPerson_All();
+        private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+
         public CreateTeamForm() {
             InitializeComponent();
+
+            // CreateSampleData();
+            WireUpLists();
         }
 
-        private void createMemberButton_Click(object sender, EventArgs e) {
+        private void CreateSampleData() {
+            availableTeamMembers.Add(new PersonModel { FirstName = "Tim", LastName = "Corey" });
+            availableTeamMembers.Add(new PersonModel { FirstName = "Sue", LastName = "Storm" });
 
-            if(ValidateForm()) {
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Jane", LastName = "Smith" });
+            selectedTeamMembers.Add(new PersonModel { FirstName = "Bill", LastName = "Jones" });
+        }
 
-                PersonModel p = new PersonModel();
-                p.FirstName = firstNameValue.Text;
-                p.LastName = lastNameValue.Text;
-                p.EmailAddress = emailValue.Text;
-                p.CellphoneNumber = cellphoneValue.Text;
+        private void WireUpLists() {
+            selectTeamMemberDropDown.DataSource = null;
+            selectTeamMemberDropDown.DataSource = availableTeamMembers;
+            selectTeamMemberDropDown.DisplayMember = "FullName"; // PersonModel.FullName
 
-                GlobalConfig.Connection.CreatePerson(p);
-
-                firstNameValue.Text = "";
-                lastNameValue.Text = "";
-                emailValue.Text = "";
-                cellphoneValue.Text = "";
-
-            } else {
-                MessageBox.Show("You need to fill in all of the fields.");
-            }
-
+            teamMembersListBox.DataSource = null;
+            teamMembersListBox.DataSource = selectedTeamMembers;
+            teamMembersListBox.DisplayMember = "FullName"; // PersonModel.FullName
         }
 
         private bool ValidateForm() {
@@ -58,6 +60,54 @@ namespace TrackerUI {
             }
 
             return true;
+        }
+
+        private void createMemberButton_Click(object sender, EventArgs e) {
+
+            if(ValidateForm()) {
+
+                PersonModel p = new PersonModel();
+                p.FirstName = firstNameValue.Text;
+                p.LastName = lastNameValue.Text;
+                p.EmailAddress = emailValue.Text;
+                p.CellphoneNumber = cellphoneValue.Text;
+
+                GlobalConfig.Connection.CreatePerson(p);
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
+
+                firstNameValue.Text = "";
+                lastNameValue.Text = "";
+                emailValue.Text = "";
+                cellphoneValue.Text = "";
+
+            } else {
+                MessageBox.Show("You need to fill in all of the fields.");
+            }
+
+        }
+
+        private void addMemberButton_Click(object sender, EventArgs e) {
+            PersonModel p = (PersonModel)selectTeamMemberDropDown.SelectedItem;
+
+            if(p != null) { 
+                availableTeamMembers.Remove(p);
+                selectedTeamMembers.Add(p);
+
+                WireUpLists();
+            }
+        }
+
+        private void removeSelectedMemberButton_Click(object sender, EventArgs e) {
+            PersonModel p = (PersonModel)teamMembersListBox.SelectedItem;
+
+            if(p != null) {
+                selectedTeamMembers.Remove(p);
+                availableTeamMembers.Add(p);
+
+                WireUpLists();
+            }
         }
     }
 }

@@ -62,5 +62,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="SQLScripts\CreateDBandTables.sql" />
+    <Content Include="SQLScripts\CreateDMLStoredProcedures.sql" />
+    <Content Include="SQLScripts\CreateDQLStoredProcedures.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
