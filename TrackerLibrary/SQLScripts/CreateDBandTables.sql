@@ -8,6 +8,7 @@ Create table dbo.Tournaments (
 	TournamentName nvarchar(200) NOT NULL,
 	EntryFee money NOT NULL
 		Constraint DF_Tournaments_EntryFee Default 0,
+	Active bit NOT NULL
 
 	Constraint PK_Tournaments Primary Key Clustered (id asc),
 );
@@ -85,11 +86,13 @@ Create table dbo.Matchups (
 Create table dbo.MatchupEntries (
 	id int Identity(1,1) NOT NULL,
 	MatchupId int NOT NULL,
+	ParentMatchupId int NOT NULL,
 	TeamCompetingId int NOT NULL,
-	Score int NOT NULL
+	Score float NOT NULL
 		Constraint DF_ME_Score Default (0),
 
 	Constraint PK_MatchupEntries Primary Key Clustered (id asc),
 	Constraint FK_ME_Matchup Foreign Key (MatchupId) References Matchups(id),
+	Constraint FK_ME_ParentMatchup Foreign Key (ParentMatchupId) References Matchups(id),
 	Constraint FK_ME_TeamCompeting Foreign Key (TeamCompetingId) References Teams(id),
 );

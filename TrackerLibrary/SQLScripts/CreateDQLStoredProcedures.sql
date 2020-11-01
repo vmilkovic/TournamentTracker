@@ -9,7 +9,6 @@ Begin
 	Where me.MatchupId = @MatchupId;
 
 End
-
 Go
 
 Create Procedure dbo.spMatchups_GetByTournament
@@ -25,7 +24,6 @@ Begin
 	Join dbo.TournamentEntries te On tm.id = te.TeamId
 	Where te.TournamentId = @TournamentId;
 End
-
 Go
 
 Create Procedure dbo.spPeople_GetAll
@@ -37,7 +35,6 @@ Begin
 	Select p.*
 	From dbo.People p;
 End
-
 Go
 
 Create Procedure dbo.spPrizes_GetByTournament
@@ -51,7 +48,6 @@ Begin
 	Join dbo.TournamentPrizes tp On p.id = tp.PrizeId
 	Where tp.TournamentId = @TournamentId;
 End
-
 Go
 
 Create Procedure dbo.spTeam_GetByTournament
@@ -65,7 +61,6 @@ Begin
 	Join dbo.TournamentEntries te On t.id = te.TeamId
 	Where te.TournamentId = @TournamentId;
 End
-
 Go
 
 Create Procedure dbo.spTeam_GetAll
@@ -74,8 +69,8 @@ Begin
 	Set NoCount On;
 	Select *
 	From dbo.Teams;
-END
-GO
+End
+Go
 
 
 Create Procedure dbo.spTeamMembers_GetByTeam
@@ -89,7 +84,6 @@ Begin
 	Inner Join dbo.People p On tm.PersonId = p.id
 	Where tm.TeamId = @TeamId;
 End
-
 Go
 
 Create Procedure dbo.spTournaments_GetAll
@@ -100,5 +94,4 @@ Begin
 	Select t.*
 	From dbo.Tournaments t
 End
-
 Go

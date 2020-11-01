@@ -13,7 +13,6 @@ Begin
 
 	Select @id = SCOPE_IDENTITY();
 End
-
 Go
 
 Create Procedure dbo.spPeople_Insert
@@ -31,7 +30,6 @@ Begin
 
 	Select @id = SCOPE_IDENTITY();
 End
-
 Go
 
 Create Procedure dbo.spTeams_Insert
@@ -46,7 +44,6 @@ Begin
 
 	Select @id = SCOPE_IDENTITY();
 End
-
 Go
 
 Create Procedure dbo.spTeamMembers_Insert
@@ -63,5 +60,49 @@ Begin
 	Select @id = SCOPE_IDENTITY();
 
 End
+Go
 
+Create Procedure dbo.spTournaments_Insert
+	@TournamentName nvarchar(200),
+	@EntryFee money,
+	@id int = 0 output
+As
+Begin
+	Set NoCount On;
+	
+	Insert Into dbo.Tournaments(TournamentName, EntryFee, Active)
+	Values(@TournamentName, @EntryFee, 1);
+
+	Select @id = SCOPE_IDENTITY();
+End
+Go
+
+Create Procedure dbo.spTournamentPrizes_Insert
+	@TournamentId int,
+	@PrizesId int,
+	@id int = 0 output
+As
+Begin
+	Set NoCount On;
+	
+	Insert Into dbo.TournamentPrizes(TournamentId, PrizeId)
+	Values (@TournamentId, @PrizesId);
+
+	Select @id = SCOPE_IDENTITY();
+End
+Go
+
+Create Procedure dbo.spTournamentEntries_Insert
+	@TournamentId int,
+	@TeamId int,
+	@id int = 0 output
+As
+Begin
+	Set NoCount On;
+
+	Insert Into dbo.TournamentEntries(TournamentId, TeamId)
+	Values (@TournamentId, @TeamId);
+
+	Select @id = SCOPE_IDENTITY();
+End
 Go
