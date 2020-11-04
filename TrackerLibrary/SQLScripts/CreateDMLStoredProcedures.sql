@@ -70,7 +70,7 @@ As
 Begin
 	Set NoCount On;
 	
-	Insert Into dbo.Tournaments(TournamentName, EntryFee, Active)
+	Insert Into dbo.Tournaments (TournamentName, EntryFee, Active)
 	Values(@TournamentName, @EntryFee, 1);
 
 	Select @id = SCOPE_IDENTITY();
@@ -79,14 +79,14 @@ Go
 
 Create Procedure dbo.spTournamentPrizes_Insert
 	@TournamentId int,
-	@PrizesId int,
+	@PrizeId int,
 	@id int = 0 output
 As
 Begin
 	Set NoCount On;
 	
-	Insert Into dbo.TournamentPrizes(TournamentId, PrizeId)
-	Values (@TournamentId, @PrizesId);
+	Insert Into dbo.TournamentPrizes (TournamentId, PrizeId)
+	Values (@TournamentId, @PrizeId);
 
 	Select @id = SCOPE_IDENTITY();
 End
@@ -100,8 +100,39 @@ As
 Begin
 	Set NoCount On;
 
-	Insert Into dbo.TournamentEntries(TournamentId, TeamId)
+	Insert Into dbo.TournamentEntries (TournamentId, TeamId)
 	Values (@TournamentId, @TeamId);
+
+	Select @id = SCOPE_IDENTITY();
+End
+Go
+
+Create Procedure dbo.spMatchups_Insert
+	@TournamentId int,
+	@MatchupRound int,
+	@id int = 0 output
+As
+Begin
+	Set NoCount On;
+
+	Insert Into dbo.Matchups (TournamentId, MatchupRound)
+	Values (@TournamentId, @MatchupRound);
+
+	Select @id = SCOPE_IDENTITY();
+End
+Go
+
+Create Procedure dbo.spMatchupEntries_Insert
+	@MatchupId int,
+	@ParentMatchupId int,
+	@TeamCompetingId int,
+	@id int = 0 output
+As
+Begin
+	Set NoCount On;
+
+	Insert Into dbo.MatchupEntries (MatchupId, ParentMatchupId, TeamCompetingId)
+	Values (@MatchupId, @ParentMatchupId, @TeamCompetingId)
 
 	Select @id = SCOPE_IDENTITY();
 End
