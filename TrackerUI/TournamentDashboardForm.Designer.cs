@@ -60,7 +60,6 @@
             this.loadExistingTournamentLabel.Size = new System.Drawing.Size(322, 37);
             this.loadExistingTournamentLabel.TabIndex = 19;
             this.loadExistingTournamentLabel.Text = "Load Existing Tournament";
-            this.loadExistingTournamentLabel.Click += new System.EventHandler(this.selectTeamMemberLabel_Click);
             // 
             // loadTournamentButton
             // 
@@ -70,9 +69,9 @@
             this.loadTournamentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.loadTournamentButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.loadTournamentButton.Location = new System.Drawing.Point(177, 163);
+            this.loadTournamentButton.Location = new System.Drawing.Point(143, 163);
             this.loadTournamentButton.Name = "loadTournamentButton";
-            this.loadTournamentButton.Size = new System.Drawing.Size(152, 41);
+            this.loadTournamentButton.Size = new System.Drawing.Size(231, 55);
             this.loadTournamentButton.TabIndex = 21;
             this.loadTournamentButton.Text = "Load Tournament";
             this.loadTournamentButton.UseVisualStyleBackColor = false;
@@ -85,12 +84,13 @@
             this.createTournamentButton.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
             this.createTournamentButton.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.createTournamentButton.Location = new System.Drawing.Point(143, 242);
+            this.createTournamentButton.Location = new System.Drawing.Point(120, 231);
             this.createTournamentButton.Name = "createTournamentButton";
-            this.createTournamentButton.Size = new System.Drawing.Size(222, 47);
+            this.createTournamentButton.Size = new System.Drawing.Size(277, 65);
             this.createTournamentButton.TabIndex = 27;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = false;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // TournamentDashboardForm
             // 

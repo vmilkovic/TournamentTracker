@@ -19,10 +19,8 @@ Begin
 
 	Select m.*
 	From dbo.Matchups m
-	Join dbo.MatchupEntries me On m.id = me.MatchupId
-	Join dbo.Teams tm On tm.id = me.TeamCompetingId
-	Join dbo.TournamentEntries te On tm.id = te.TeamId
-	Where te.TournamentId = @TournamentId;
+	Where m.TournamentId = @TournamentId
+	Order By MatchupRound;
 End
 Go
 
@@ -44,8 +42,8 @@ Begin
 	Set NoCount On;
 
 	Select p.*
-	From Prizes p
-	Join dbo.TournamentPrizes tp On p.id = tp.PrizeId
+	From dbo.Prizes p
+	Inner Join dbo.TournamentPrizes tp On p.id = tp.PrizeId
 	Where tp.TournamentId = @TournamentId;
 End
 Go
@@ -58,7 +56,7 @@ Begin
 
 	Select t.*
 	From dbo.Teams t
-	Join dbo.TournamentEntries te On t.id = te.TeamId
+	Inner Join dbo.TournamentEntries te On t.id = te.TeamId
 	Where te.TournamentId = @TournamentId;
 End
 Go
@@ -93,5 +91,6 @@ Begin
 
 	Select t.*
 	From dbo.Tournaments t
+	Where Active = 1;
 End
 Go
