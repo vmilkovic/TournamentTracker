@@ -137,3 +137,30 @@ Begin
 	Select @id = SCOPE_IDENTITY();
 End
 Go
+
+Create Procedure dbo.spMatchups_Update
+	@id int,
+	@WinnerId int
+As
+Begin
+	Set NoCount On;
+	
+	Update dbo.Matchups
+	Set WinnerId = @WinnerId
+	Where id = @id;
+End
+Go
+
+Create Procedure spMatchupEntries_Update
+	@id int,
+	@TeamCompetingId int = null,
+	@Score float = null
+As
+Begin
+	Set NoCount On;
+
+	Update dbo.MatchupEntries
+	set TeamCompetingId = @TeamCompetingId, Score = @Score
+	Where id = @id;
+End
+Go

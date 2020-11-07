@@ -100,5 +100,9 @@ namespace TrackerLibrary.DataAccess {
                 .LoadFile()
                 .ConvertToTournamentModels();
         }
+
+        public void UpdateMatchup(MatchupModel model) {
+            model.UpdateMatchupToFile();
+        }
     }
 }
