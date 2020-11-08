@@ -164,3 +164,15 @@ Begin
 	Where id = @id;
 End
 Go
+
+Create Procedure dbo.spTournaments_Complete
+	@id int
+As
+Begin
+	Set NoCount On;
+
+	Update dbo.Tournaments 
+	Set Active = 0
+	Where id = @id;
+End
+Go
