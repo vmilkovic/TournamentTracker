@@ -324,7 +324,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers {
                 if(m.Winner != null) {
                     winner = m.Winner.Id.ToString();
                 }
-                lines.Add($"{m.Id },{ ConverMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
+                lines.Add($"{ m.Id },{ ConverMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
@@ -356,7 +356,7 @@ namespace TrackerLibrary.DataAccess.TextHelpers {
                 if(m.Winner != null) {
                     winner = m.Winner.Id.ToString();
                 }
-                lines.Add($"{m.Id },{ ConverMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
+                lines.Add($"{ m.Id },{ ConverMatchupEntryListToString(m.Entries) },{ winner },{ m.MatchupRound }");
             }
 
             File.WriteAllLines(GlobalConfig.MatchupFile.FullFilePath(), lines);
@@ -395,9 +395,9 @@ namespace TrackerLibrary.DataAccess.TextHelpers {
             List<MatchupEntryModel> entries = GlobalConfig.MatchupEntryFile.FullFilePath().LoadFile().ConvertToMatchupEntryModels();
 
             MatchupEntryModel oldEntry = new MatchupEntryModel();
-            foreach(MatchupEntryModel e in entries) {
-                if(e.Id == entry.Id) {
-                    oldEntry = e;
+            foreach(MatchupEntryModel en in entries) {
+                if(en.Id == entry.Id) {
+                    oldEntry = en;
                 }
             }
 

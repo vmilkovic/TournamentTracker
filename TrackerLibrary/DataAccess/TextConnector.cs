@@ -9,7 +9,7 @@ using TrackerLibrary.DataAccess.TextHelpers;
 namespace TrackerLibrary.DataAccess {
     public class TextConnector : IDataConnection {
 
-        public PersonModel CreatePerson(PersonModel model) {
+        public void CreatePerson(PersonModel model) {
             List<PersonModel> people = GlobalConfig.PeopleFile.FullFilePath().LoadFile().ConvertToPersonModels();
 
             int currentId = 1;
@@ -21,11 +21,9 @@ namespace TrackerLibrary.DataAccess {
 
             people.Add(model);
             people.SaveToPeopleFile();
-
-            return model;
         }
 
-        public PrizeModel CreatePrize(PrizeModel model) {
+        public void CreatePrize(PrizeModel model) {
 
             // Load the text file and convert the text to List<PrizeModel>
             List<PrizeModel> prizes = GlobalConfig.PrizesFile.FullFilePath().LoadFile().ConvertToPrizeModels();
@@ -44,11 +42,9 @@ namespace TrackerLibrary.DataAccess {
             // Convert the prizes to list<string>
             // Save the list<string> to the text file
             prizes.SaveToPrizeFile();
-
-            return model;
         }
 
-        public TeamModel CreateTeam(TeamModel model) {
+        public void CreateTeam(TeamModel model) {
             List<TeamModel> teams = GlobalConfig.TeamFile.FullFilePath().LoadFile().ConvertToTeamModels();
 
             int currentId = 1;
@@ -61,8 +57,6 @@ namespace TrackerLibrary.DataAccess {
 
             teams.Add(model);
             teams.SaveToTeamFile();
-
-            return model;
         }
 
         public List<PersonModel> GetPerson_All() {
@@ -93,6 +87,8 @@ namespace TrackerLibrary.DataAccess {
             tournaments.Add(model);
 
             tournaments.SaveToTournamentFile();
+
+            TournamentLogic.UpdateTournamentResults(model);
         }
 
         public List<TournamentModel> GetTournament_All() {
